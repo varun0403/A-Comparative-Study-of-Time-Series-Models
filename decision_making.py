@@ -13,12 +13,7 @@ def is_stationary(series, alpha=0.05):
     return p_value < alpha
 
 
-# Get CSV path from command-line arguments
-if len(sys.argv) < 2:
-    print("Error: No CSV file path provided.")
-    sys.exit(1)
-
-csv_path = sys.argv[1]
+csv_path = "data/HDFCBANK.csv"
 
 try:
     df = pd.read_csv(csv_path)
@@ -37,6 +32,7 @@ try:
             # "LSTM": lstm_forecast(df),
             "XGBoost": xgboost_forecast(df)
         }
+        print(metrics)
         output_file = "results/lstm_xgboost_forecast.png"
 
         #Print for Java to pick up image

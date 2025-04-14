@@ -8,6 +8,7 @@ import json
 
 
 def xgboost_forecast(df):
+    df = pd.read_csv("data/HDFCBANK.csv")
     df['Date'] = pd.to_datetime(df['Date'])
     df.set_index('Date', inplace=True)
 
@@ -87,7 +88,7 @@ def xgboost_forecast(df):
         "R2_Score": round(r2, 4)
     }
 
-    with open("../results/xgboost_metrics.json", "w") as f:
+    with open("results/xgboost_metrics.json", "w") as f:
         json.dump(metrics, f)
 
     # Plot actual vs forecasted values
